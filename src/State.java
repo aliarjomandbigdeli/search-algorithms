@@ -1,11 +1,13 @@
-public class State {
-    private int id;
+public abstract class State {
+    protected State parent;
+    protected int act;
 
-    public int getId() {
-        return id;
+    public State() {
+        parent = null;
+        act = -1;
     }
 
-    public State(int id) {
-        this.id = id;
+    public int getAct() {
+        return act;
     }
 }
