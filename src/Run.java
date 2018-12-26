@@ -11,7 +11,8 @@ public class Run {
 //        Search search = new SearchBFS(true);
 //        Search search = new SearchDFS(true);
 //        Search search = new SearchUCS(true);
-        Search search = new SearchAStar(true);
+//        Search search = new SearchAStar(true);
+        Search search = new SearchGreedyBFS(true);
         search.setProblem(problem);
         search.execute();
         System.out.println("path: ");
