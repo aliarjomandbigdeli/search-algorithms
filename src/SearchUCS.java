@@ -17,7 +17,7 @@ public class SearchUCS extends Search {
     }
 
     @Override
-    void search() {
+    public void search() {
         while (!f.isEmpty()) {
             State tt=f.peek();
             State s = f.remove();

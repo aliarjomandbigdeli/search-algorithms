@@ -5,17 +5,15 @@ public class Main {
         System.out.println("Hello World!");
         NavigationProblem p = new NavigationProblem();
         System.out.println(p.stepCost(14, 15));
-        NavState s1=new NavState(3);
-        NavState s2=new NavState(3);
-        if(s1.equals(s2))
-            System.out.println("i 'am");
+
         Problem problem = new NavigationProblem();
-        Search search = new SearchBFS(true);
+//        Search search = new SearchBFS(false);
+        Search search = new SearchDFSlimited(true,6);
         search.setProblem(problem);
         search.execute();
         System.out.println("path: ");
-        for (Integer node : search.getPath()) {
-            System.out.println(node);
+        for (int i = 0; i < search.getPath().size() - 1; i++) {
+            System.out.print(search.getPath().get(i) + " ");
         }
     }
 }

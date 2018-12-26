@@ -36,6 +36,6 @@ public abstract class Search {
 
     abstract public void execute();
 
-    abstract void search();
+    abstract public void search();
 
 }

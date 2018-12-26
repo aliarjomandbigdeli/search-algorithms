@@ -11,7 +11,6 @@ public class NavigationProblem extends Problem {
 
 
     public boolean goalTest(State state) {
-        System.out.println("goalTest call");
         return goalState.equals(state);
     }
 
@@ -19,8 +18,13 @@ public class NavigationProblem extends Problem {
     public ArrayList<Integer> actions(State state) {
         ArrayList<Integer> actions = new ArrayList<>();
         for (int i = 0; i < map[((NavState) state).getId()].length; i++) {
-            if (map[((NavState) state).getId()][i] != 0)
-                actions.add(i);
+            if (map[((NavState) state).getId()][i] != 0) {
+                if (state.parent != null) {
+                    if (i != ((NavState) state.parent).getId())
+                        actions.add(i);
+                } else
+                    actions.add(i);
+            }
         }
         return actions;
     }

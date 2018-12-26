@@ -13,13 +13,12 @@ public class SearchBFS extends Search {
     }
 
     @Override
-    void search() {
+    public void search() {
         while (!f.isEmpty()) {
             State s = f.remove();
-            System.out.println("id: " + ((NavState) s).getId());
+//            System.out.println("id: " + ((NavState) s).getId());
             nodeExpand++;
             if (problem.goalTest(s)) {
-                System.out.println("hello");
                 answer = s;
                 State temp = s;
                 while (temp != null) {
@@ -31,7 +30,7 @@ public class SearchBFS extends Search {
 
             for (Integer action : problem.actions(s)) {
                 nodeSeen++;
-                System.out.println("action: " + action);
+//                System.out.println("action: " + action);
                 if (isGraph) {
                     boolean temp = false;
                     for (State node : e) {
