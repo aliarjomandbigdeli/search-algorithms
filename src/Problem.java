@@ -19,4 +19,8 @@ public abstract class Problem {
     abstract public int stepCost(State firstState, int action, State secondState);
 
     abstract public int pathCost(List<Integer> path);
+
+    public int h(State state){
+        return 0;
+    }
 }

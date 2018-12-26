@@ -4,6 +4,7 @@ import java.util.List;
 
 public class NavigationProblem extends Problem {
     private int[][] map;
+    private int[] straightLineDistance;
 
     public NavigationProblem() {
         initializeProblem();
@@ -68,10 +69,18 @@ public class NavigationProblem extends Problem {
     @Override
     public int pathCost(List<Integer> path) {
         int cost = 0;
-        for (int i = 0; i < path.size() - 1; i++) {
+        for (int i = 0; i < path.size() - 2; i++) {
             cost += stepCost(path.get(i), path.get(i + 1));
+            if (i == path.size() - 3) {
+                cost += stepCost(path.get(i + 1), 0);
+            }
         }
         return cost;
+    }
+
+    @Override
+    public int h(State state) {
+        return straightLineDistance[((NavState) state).getId()];
     }
 
     private void initializeProblem() {
@@ -99,6 +108,8 @@ public class NavigationProblem extends Problem {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 92, 0, 87},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 87, 0}
         };
+        straightLineDistance = new int[]{366, 374, 380, 253, 329, 244, 241, 242,
+                160, 193, 98, 178, 0, 77, 80, 151, 161, 199, 226, 234};
     }
 
 

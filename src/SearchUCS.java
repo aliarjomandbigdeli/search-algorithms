@@ -44,13 +44,18 @@ public class SearchUCS extends Search {
                 f.add(problem.nextState(s, action));
             }
             f.sort(new Comparator<State>() {
-
-                public int compare(State first, State second) {
-                    return ((Integer) problem.stepCost(first.parent, first.act, first)).
-                            compareTo(problem.stepCost(second.parent, second.act, second));
-
+                @Override
+                public int compare(State o1, State o2) {
+                    return ((Integer) problem.stepCost(o1.parent, o1.act, o1)).
+                            compareTo(problem.stepCost(o2.parent, o2.act, o2));
                 }
             });
+
+//            System.out.println("sorted f: ");
+//            for (State state : f) {
+//                System.out.print(((NavState) state).getId() + ", ");
+//            }
+//            System.out.println();
 
             if (isGraph)
                 e.add(s);
