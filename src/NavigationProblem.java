@@ -36,7 +36,7 @@ public class NavigationProblem extends Problem {
             nextState.parent = state;
             nextState.act = action;
             return nextState;
-        } else{
+        } else {
             System.out.println("wrong action");
             return null;
         }
@@ -51,10 +51,14 @@ public class NavigationProblem extends Problem {
         if (firstState instanceof NavState && secondState instanceof NavState) {
             if (map[((NavState) firstState).getId()][((NavState) secondState).getId()] != 0)
                 return map[((NavState) firstState).getId()][((NavState) secondState).getId()];
-            else
+            else {
+                System.out.println("invalid step cost");
                 return -1;
-        } else
+            }
+        } else {
+            System.out.println("invalid step cost");
             return -1;
+        }
     }
 
     public int stepCost(int firstState, int secondState) {

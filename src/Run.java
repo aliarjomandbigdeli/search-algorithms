@@ -1,4 +1,4 @@
-public class Main {
+public class Run {
 
     public static void main(String[] args) {
 
@@ -8,9 +8,8 @@ public class Main {
 
         Problem problem = new NavigationProblem();
 //        Search search = new SearchBFS(true);
-//        Search search = new SearchDFSlimited(true,6);
-//        Search search = new SearchDFS(true);
-        Search search = new SearchDFSIterative(true);
+        Search search = new SearchDFS(true);
+//        Search search = new SearchUCS(false);
         search.setProblem(problem);
         search.execute();
         System.out.println("path: ");

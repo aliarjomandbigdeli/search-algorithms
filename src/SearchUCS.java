@@ -1,7 +1,5 @@
 //package search;
 
-import com.sun.istack.internal.Nullable;
-
 import java.util.Comparator;
 
 //uniform cost search
@@ -19,18 +17,13 @@ public class SearchUCS extends Search {
     @Override
     public void search() {
         while (!f.isEmpty()) {
-            State tt=f.peek();
             State s = f.remove();
-            if(tt.equals(s)){
-                System.out.println("I 'm happy");
-            }
             nodeExpand++;
-//            if (problem.goalTest(s)) {
-            if (problem.goalState == s) {
+            if (problem.goalTest(s)) {
                 answer = s;
                 State temp = s;
                 while (temp != null) {
-                    path.add(temp.getAct());
+                    path.add(temp.act);
                     temp = temp.parent;
                 }
                 return;
@@ -50,18 +43,17 @@ public class SearchUCS extends Search {
 
                 f.add(problem.nextState(s, action));
             }
+            f.sort(new Comparator<State>() {
 
-//            f.sort(new Comparator<>);
+                public int compare(State first, State second) {
+                    return ((Integer) problem.stepCost(first.parent, first.act, first)).
+                            compareTo(problem.stepCost(second.parent, second.act, second));
 
+                }
+            });
 
-//            f.sort([ &](const void*a, const void*b){
-//			const State * first = static_cast <const State * > (a);
-//			const State * second = static_cast <const State * > (b);
-//                return problem -> stepCost(first -> par, first -> act, first) <
-//                        problem -> stepCost(second -> par, second -> act, second);
-//            });
-
-            e.add(s);
+            if (isGraph)
+                e.add(s);
 
         }
     }
