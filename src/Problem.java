@@ -20,6 +20,7 @@ public abstract class Problem {
 
     abstract public int pathCost(List<Integer> path);
 
+    //heuristic function
     public int h(State state){
         return 0;
     }

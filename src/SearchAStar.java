@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 
 public class SearchAStar extends Search {
@@ -13,7 +14,7 @@ public class SearchAStar extends Search {
 
     @Override
     public void search() {
-        while (! f.isEmpty() ) {
+        while (!f.isEmpty()) {
             State s = f.remove();
             nodeExpand++;
             if (problem.goalTest(s)) {
@@ -30,7 +31,7 @@ public class SearchAStar extends Search {
                 if (isGraph) {
                     boolean temp = false;
                     for (State node : e) {
-                        if (node.equals(problem.nextState(s, action)) ) {
+                        if (node.equals(problem.nextState(s, action))) {
                             temp = true;
                             break;
                         }
@@ -44,11 +45,26 @@ public class SearchAStar extends Search {
 
             f.sort(new Comparator<State>() {
                 @Override
-                public int compare(State o1, State o2) {
-                    return 0;
+                public int compare(State s1, State s2) {
+                    ArrayList<Integer> path1 = new ArrayList<>();
+                    ArrayList<Integer> path2 = new ArrayList<>();
+                    State temp = s1;
+                    while (temp != null) {
+                        path1.add(temp.act);
+                        temp = temp.parent;
+                    }
+                    temp = s2;
+                    while (temp != null) {
+                        path2.add(temp.act);
+                        temp = temp.parent;
+                    }
+                    return ((Integer) (problem.pathCost(path1) + problem.h(s1))).
+                            compareTo(problem.pathCost(path2) + problem.h(s2));
                 }
             });
 
+            if (isGraph)
+                e.add(s);
 
         }
     }

@@ -1,3 +1,4 @@
+//DFS limited depth
 public class SearchDFSlimited extends Search {
     protected int depth;
 
@@ -20,8 +21,7 @@ public class SearchDFSlimited extends Search {
     }
 
     /**
-     *
-     * @param node refer to parent node
+     * @param node  refer to parent node
      * @param depth
      */
     public void search(State node, int depth) {

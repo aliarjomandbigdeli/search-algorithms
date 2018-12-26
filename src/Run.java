@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Run {
 
@@ -12,7 +10,8 @@ public class Run {
         Problem problem = new NavigationProblem();
 //        Search search = new SearchBFS(true);
 //        Search search = new SearchDFS(true);
-        Search search = new SearchUCS(true);
+//        Search search = new SearchUCS(true);
+        Search search = new SearchAStar(true);
         search.setProblem(problem);
         search.execute();
         System.out.println("path: ");
