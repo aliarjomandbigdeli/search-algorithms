@@ -7,8 +7,9 @@ public class Main {
         System.out.println(p.stepCost(14, 15));
 
         Problem problem = new NavigationProblem();
-//        Search search = new SearchBFS(false);
-        Search search = new SearchDFSlimited(true,6);
+//        Search search = new SearchBFS(true);
+//        Search search = new SearchDFSlimited(true,6);
+        Search search = new SearchDFS(true);
         search.setProblem(problem);
         search.execute();
         System.out.println("path: ");

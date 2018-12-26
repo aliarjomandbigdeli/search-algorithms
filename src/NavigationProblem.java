@@ -36,8 +36,10 @@ public class NavigationProblem extends Problem {
             nextState.parent = state;
             nextState.act = action;
             return nextState;
-        } else
+        } else{
+            System.out.println("wrong action");
             return null;
+        }
     }
 
     @Override
