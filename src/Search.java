@@ -5,7 +5,8 @@ public abstract class Search {
     protected int nodeExpand;
     protected LinkedList<Integer> path;
     protected int pathCost;
-    protected double maxMemoryUse;
+    protected long maxMemoryUse;
+    protected long nodeSize;
     protected State answer;
 
     protected Problem problem;
@@ -20,10 +21,26 @@ public abstract class Search {
         nodeExpand = 0;
         path = new LinkedList<>();
         pathCost = 0;
-        maxMemoryUse = 0.0;
+        maxMemoryUse = 0;
         f = new LinkedList<>();
         if (isGraph)
             e = new LinkedList<>();
+    }
+
+    public int getNodeSeen() {
+        return nodeSeen;
+    }
+
+    public int getNodeExpand() {
+        return nodeExpand;
+    }
+
+    public long getMaxMemoryUse() {
+        return maxMemoryUse;
+    }
+
+    public void setNodeSize(long nodeSizeByte) {
+        this.nodeSize = nodeSizeByte;
     }
 
     public LinkedList<Integer> getPath() {
@@ -32,6 +49,10 @@ public abstract class Search {
 
     public void setProblem(Problem problem) {
         this.problem = problem;
+    }
+
+    public Problem getProblem() {
+        return problem;
     }
 
     abstract public void execute();

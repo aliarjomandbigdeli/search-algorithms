@@ -1,8 +1,8 @@
 //DFS limited depth
-public class SearchDFSlimited extends Search {
+public class SearchDFSLimited extends Search {
     protected int depth;
 
-    public SearchDFSlimited(boolean isGraph, int depth) {
+    public SearchDFSLimited(boolean isGraph, int depth) {
         super(isGraph);
         if (depth < 0)
             System.out.println("invalid depth");
@@ -13,6 +13,7 @@ public class SearchDFSlimited extends Search {
     @Override
     public void execute() {
         search();
+        maxMemoryUse = path.size() * 4; //int size in java: 4 bytes
     }
 
     @Override

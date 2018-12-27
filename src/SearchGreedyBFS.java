@@ -10,6 +10,7 @@ public class SearchGreedyBFS extends Search {
     public void execute() {
         f.add(problem.getInitialState());
         search();
+        maxMemoryUse = (nodeSeen - nodeExpand)* nodeSize;
     }
 
     @Override

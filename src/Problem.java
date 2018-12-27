@@ -3,7 +3,6 @@ import java.util.List;
 
 public abstract class Problem {
     protected State initialState;
-    protected State initialStateR;  //initial state for recursive mode
     protected State goalState;
 
     public State getInitialState() {
