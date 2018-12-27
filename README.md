@@ -1,5 +1,5 @@
 # Search Algorithms in AI
-In this project I implement most of the classical search algorithms using in AI, such as:
+In this project I implement most of the classical search algorithms are used in AI, such as:
 - Breath First Search(BFS)
 - Depth First Search(DFS)
 - Depth First Search(DFS) limited depth
