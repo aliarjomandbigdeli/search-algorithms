@@ -1,8 +1,11 @@
-//package search;
-
 import java.util.Comparator;
 
-//uniform cost search
+/**
+ * uniform cost search algorithm
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public class SearchUCS extends Search {
     public SearchUCS(boolean isGraph) {
         super(isGraph);

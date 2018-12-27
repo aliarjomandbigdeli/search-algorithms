@@ -1,3 +1,9 @@
+/**
+ * iterative deepening Depth First Search(DFS) algorithm
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public class SearchDFSIterative extends SearchDFSLimited {
     public SearchDFSIterative(boolean isGraph) {
         super(isGraph, 0);

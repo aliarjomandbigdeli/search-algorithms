@@ -1,6 +1,11 @@
 import java.util.Comparator;
 
-//greedy best first search
+/**
+ * greedy best first search algorithm
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public class SearchGreedyBFS extends Search {
     public SearchGreedyBFS(boolean isGraph) {
         super(isGraph);

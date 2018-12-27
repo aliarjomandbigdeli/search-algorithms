@@ -1,5 +1,9 @@
-//package search;
-
+/**
+ * Breath First Search(BFS) algorithm
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public class SearchBFS extends Search {
 
     public SearchBFS(boolean isGraph) {

@@ -1,4 +1,9 @@
-//DFS limited depth
+/**
+ * Depth First Search(DFS) limited depth algorithm
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public class SearchDFSLimited extends Search {
     protected int depth;
 

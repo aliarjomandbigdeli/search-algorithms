@@ -1,3 +1,9 @@
+/**
+ * Depth First Search(DFS) algorithm
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public class SearchDFS extends Search {
     public SearchDFS(boolean isGraph) {
         super(isGraph);

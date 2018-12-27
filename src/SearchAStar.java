@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * A* search algorithm
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public class SearchAStar extends Search {
     public SearchAStar(boolean isGraph) {
         super(isGraph);

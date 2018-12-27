@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this class is the parent of all problems you want to define with this interface
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public abstract class Problem {
     protected State initialState;
     protected State goalState;
@@ -19,7 +25,10 @@ public abstract class Problem {
 
     abstract public int pathCost(List<Integer> path);
 
-    //heuristic function
+    /**
+     * heuristic function
+     * you should override it based on your problem to use AStar search
+     */
     public int h(State state){
         return 0;
     }

@@ -2,6 +2,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this class is an example of how to use this interface to solve any search problem
+ * As an example I choose Navigation problem that has a map and Straight-line distance
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public class NavigationProblem extends Problem {
     private int[][] map;
     private int[] straightLineDistance;

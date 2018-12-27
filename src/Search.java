@@ -1,5 +1,10 @@
 import java.util.LinkedList;
-
+/**
+ * this class is the parent of all searches you want to define with this interface
+ *
+ * @author Ali ArjomandBigdeli
+ * @since 12.27.2018
+ */
 public abstract class Search {
     protected int nodeSeen;
     protected int nodeExpand;
