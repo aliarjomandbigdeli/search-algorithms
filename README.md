@@ -1,5 +1,6 @@
 # Search Algorithms in AI
-In this project I implement most of the classical search algorithms using in AI
+In this project I implement most of the classical search algorithms using in AI.
+
 To use these search algorithms for solving your problem, you should define your problem and it's state classes that extends from Problem and State class.
 
 Use `MyProblem extends Problem` and `MyProblemState extends State` to achieve that.
@@ -8,7 +9,7 @@ For example, I model a navigation problem in Romania by defining NavigationProbl
 
 ![picture](images/RomaniaMap.png)
   
- You can also see the CityIDs below:
+ You can also see the CityIDs that I assume below:
  
  0. Arad
  1. Zerind
