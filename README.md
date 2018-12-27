@@ -5,5 +5,5 @@ Use `MyProblem extends Problem` and `MyProblemState extends State` to achieve th
 
 For example, I model a navigation problem in Romania by defining NavigationProblem and NavState classes. You can see the map of the cities below:
 
-![picture](images/Romania map.JPG)
+![picture](images/RomaniaMap.png)
   
