@@ -8,7 +8,7 @@ For example, I model a navigation problem in Romania by defining NavigationProbl
 
 ![picture](images/RomaniaMap.png)
   
- You can also see the CityIDs below:
+ You can also see the CityIDs below.
  
  0. Arad
  1. Zerind
