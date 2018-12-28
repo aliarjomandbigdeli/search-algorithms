@@ -1,5 +1,5 @@
 # Search Algorithms in AI
-In this project I implement most of the classical search algorithms are used in AI, such as:
+In this project, I implement most of the classical search algorithms are used in AI, such as:
 - Breath First Search(BFS)
 - Depth First Search(DFS)
 - Depth First Search(DFS) limited depth
@@ -9,7 +9,7 @@ In this project I implement most of the classical search algorithms are used in 
 - A* (A star)
 
 ## How to use
-To use these search algorithms for solving your problem, you should define your problem and it's state classes that extends from Problem and State class.
+To use these search algorithms for solving your problem, you should define your problem and its state classes that extend from Problem and State class.
 
 Use `MyProblem extends Problem` and `MyProblemState extends State` to achieve that.
 
