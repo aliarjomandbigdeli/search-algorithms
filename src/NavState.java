@@ -5,7 +5,7 @@
  * @since 12.27.2018
  */
 public class NavState extends State {
-    private int id;
+    private int id; //cityID
 
     /**
      * city ID

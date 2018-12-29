@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public abstract class Search {
     protected int nodeSeen;
     protected int nodeExpand;
-    protected LinkedList<Integer> path;
+    protected LinkedList<Integer> path; //action sequence
     protected int pathCost;
     protected int maxNodeKeptInMemory;
     protected long nodeSize;
@@ -63,6 +63,14 @@ public abstract class Search {
     abstract public void execute();
 
     abstract public void search();
+
+    protected void createSolutionPath(State state){
+        State temp = state;
+        while (temp != null) {
+            path.add(temp.act);
+            temp = temp.parent;
+        }
+    }
 
     protected void showLists() {
         System.out.print("frontier list: ");

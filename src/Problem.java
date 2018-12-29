@@ -15,6 +15,11 @@ public abstract class Problem {
         return initialState;
     }
 
+    /**
+     * The goal test, which determines whether a given state is a goal state
+     * @param state given state
+     * @return a boolean which determines whether a given state is a goal state
+     */
     abstract public boolean goalTest(State state);
 
     abstract public ArrayList<Integer> actions(State state);

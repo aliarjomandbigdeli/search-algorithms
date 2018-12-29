@@ -34,28 +34,18 @@ public class SearchBFS extends Search {
                     if (!e.contains(child) && !f.contains(child)) {
                         if (problem.goalTest(child)) {
                             answer = child;
-                            State temp = child;
-                            while (temp != null) {
-                                path.add(temp.act);
-                                temp = temp.parent;
-                            }
+                            createSolutionPath(child);
                             return;
                         }
                         f.add(child);
                     }
                 } else {
-                    if (!f.contains(child)) {
-                        if (problem.goalTest(child)) {
-                            answer = child;
-                            State temp = child;
-                            while (temp != null) {
-                                path.add(temp.act);
-                                temp = temp.parent;
-                            }
-                            return;
-                        }
-                        f.add(child);
+                    if (problem.goalTest(child)) {
+                        answer = child;
+                        createSolutionPath(child);
+                        return;
                     }
+                    f.add(child);
                 }
             }
 

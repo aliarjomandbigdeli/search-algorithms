@@ -1,5 +1,6 @@
 /**
  * Depth First Search(DFS) algorithm
+ * this implementation is the recursive version
  *
  * @author Ali ArjomandBigdeli
  * @since 12.27.2018
@@ -12,7 +13,6 @@ public class SearchDFS extends Search {
     @Override
     public void execute() {
         search();
-//        maxNodeKeptInMemory = f.size() + e.size();
     }
 
     public void search() {
@@ -38,14 +38,9 @@ public class SearchDFS extends Search {
             State child = problem.nextState(node, action);
             nodeSeen++;
             if (isGraph) {
-                boolean temp = false;
-                for (State nod : e) {
-                    if (nod.equals(child)) {
-                        temp = true;
-                        break;
-                    }
+                if(e.contains(child)){
+                    continue;
                 }
-                if (temp) continue;
                 e.add(node);
             }
             search(child);

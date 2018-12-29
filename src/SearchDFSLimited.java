@@ -42,14 +42,9 @@ public class SearchDFSLimited extends Search {
             State child = problem.nextState(node, action);
             nodeSeen++;
             if (isGraph) {
-                boolean temp = false;
-                for (State nod : e) {
-                    if (nod.equals(child)) {
-                        temp = true;
-                        break;
-                    }
+                if(e.contains(child)){
+                    continue;
                 }
-                if (temp) continue;
                 e.add(node);
             }
 

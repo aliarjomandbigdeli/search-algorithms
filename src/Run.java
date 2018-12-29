@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * this class is used to solve a problem with one the search algorithms
+ * this class is used to solve a problem with one of the search algorithms
  *
  * @author Ali ArjomandBigdeli
  * @since 12.27.2018

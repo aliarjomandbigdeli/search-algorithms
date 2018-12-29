@@ -21,16 +21,10 @@ public class SearchAStar extends Search {
         f.add(problem.getInitialState());
         nodeSeen++;
         while (!f.isEmpty()) {
-            showLists();
-
             State s = f.remove();
             if (problem.goalTest(s)) {
                 answer = s;
-                State temp = s;
-                while (temp != null) {
-                    path.add(temp.act);
-                    temp = temp.parent;
-                }
+                createSolutionPath(s);
                 return;
             }
 
@@ -45,6 +39,7 @@ public class SearchAStar extends Search {
                     if (!e.contains(child) && !f.contains(child)) {
                         f.add(child);
                     } else if (f.contains(child)) {
+                        //if child is in frontier with higher PATH-COST then replace that frontier node with child
                         State temp = f.get(f.indexOf(child));
                         if (temp.pathCost > child.pathCost) {
                             temp.parent = child.parent;
@@ -52,15 +47,7 @@ public class SearchAStar extends Search {
                         }
                     }
                 } else {
-                    if (!f.contains(child)) {
-                        f.add(child);
-                    } else if (f.contains(child)) {
-                        State temp = f.get(f.indexOf(child));
-                        if (temp.pathCost > child.pathCost) {
-                            temp.parent = child.parent;
-                            temp.pathCost = child.pathCost;
-                        }
-                    }
+                    f.add(child);
                 }
             }
 

@@ -25,11 +25,7 @@ public class SearchGreedyBFS extends Search {
             State s = f.remove();
             if (problem.goalTest(s)) {
                 answer = s;
-                State temp = s;
-                while (temp != null) {
-                    path.add(temp.act);
-                    temp = temp.parent;
-                }
+                createSolutionPath(s);
                 return;
             }
 
@@ -45,9 +41,7 @@ public class SearchGreedyBFS extends Search {
                         f.add(child);
                     }
                 } else {
-                    if (!f.contains(child)) {
-                        f.add(child);
-                    }
+                    f.add(child);
                 }
             }
             f.sort(new Comparator<State>() {
