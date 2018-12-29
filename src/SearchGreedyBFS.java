@@ -39,14 +39,13 @@ public class SearchGreedyBFS extends Search {
 
             for (Integer action : problem.actions(s)) {
                 State child = problem.nextState(s, action);
+                nodeSeen++;
                 if (isGraph) {
                     if (!e.contains(child) && !f.contains(child)) {
-                        nodeSeen++;
                         f.add(child);
                     }
                 } else {
                     if (!f.contains(child)) {
-                        nodeSeen++;
                         f.add(child);
                     }
                 }

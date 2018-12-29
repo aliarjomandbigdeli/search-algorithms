@@ -18,7 +18,6 @@ public class SearchDFSLimited extends Search {
     @Override
     public void execute() {
         search();
-        maxNodeKeptInMemory = path.size() * 4; //int size in java: 4 bytes
     }
 
     @Override
@@ -40,20 +39,23 @@ public class SearchDFSLimited extends Search {
         }
         nodeExpand++;
         for (Integer action : problem.actions(node)) {
+            State child = problem.nextState(node, action);
+            nodeSeen++;
             if (isGraph) {
                 boolean temp = false;
                 for (State nod : e) {
-                    if (nod.equals(problem.nextState(node, action))) {
+                    if (nod.equals(child)) {
                         temp = true;
                         break;
                     }
                 }
                 if (temp) continue;
-            }
-            nodeSeen++;
-            if (isGraph)
                 e.add(node);
-            search(problem.nextState(node, action), depth + 1);
+            }
+
+            search(child, depth + 1);
+
+            maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size() + e.size());
             if (answer != null) {
                 path.add(node.act);
                 return;

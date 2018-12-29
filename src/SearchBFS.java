@@ -29,9 +29,9 @@ public class SearchBFS extends Search {
 
             for (Integer action : problem.actions(s)) {
                 State child = problem.nextState(s, action);
+                nodeSeen++;
                 if (isGraph) {
                     if (!e.contains(child) && !f.contains(child)) {
-                        nodeSeen++;
                         if (problem.goalTest(child)) {
                             answer = child;
                             State temp = child;
@@ -45,7 +45,6 @@ public class SearchBFS extends Search {
                     }
                 } else {
                     if (!f.contains(child)) {
-                        nodeSeen++;
                         if (problem.goalTest(child)) {
                             answer = child;
                             State temp = child;

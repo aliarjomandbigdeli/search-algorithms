@@ -40,9 +40,9 @@ public class SearchAStar extends Search {
 
             for (Integer action : problem.actions(s)) {
                 State child = problem.nextState(s, action);
+                nodeSeen++;
                 if (isGraph) {
                     if (!e.contains(child) && !f.contains(child)) {
-                        nodeSeen++;
                         f.add(child);
                     } else if (f.contains(child)) {
                         State temp = f.get(f.indexOf(child));
@@ -53,7 +53,6 @@ public class SearchAStar extends Search {
                     }
                 } else {
                     if (!f.contains(child)) {
-                        nodeSeen++;
                         f.add(child);
                     } else if (f.contains(child)) {
                         State temp = f.get(f.indexOf(child));

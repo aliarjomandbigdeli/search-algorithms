@@ -12,6 +12,7 @@ public class SearchDFS extends Search {
     @Override
     public void execute() {
         search();
+//        maxNodeKeptInMemory = f.size() + e.size();
     }
 
     public void search() {
@@ -27,26 +28,44 @@ public class SearchDFS extends Search {
             path.add(node.act);
             return;
         }
+        if (!isGraph && cycleDetection(node)) {
+            System.out.println("cycle detected, algorithm can't solve this problem");
+            return;
+        }
+
         nodeExpand++;
         for (Integer action : problem.actions(node)) {
+            State child = problem.nextState(node, action);
+            nodeSeen++;
             if (isGraph) {
                 boolean temp = false;
                 for (State nod : e) {
-                    if (nod.equals(problem.nextState(node, action))) {
+                    if (nod.equals(child)) {
                         temp = true;
                         break;
                     }
                 }
                 if (temp) continue;
-            }
-            nodeSeen++;
-            if (isGraph)
                 e.add(node);
-            search(problem.nextState(node, action));
+            }
+            search(child);
+
+            maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size() + e.size());
             if (answer != null) {
                 path.add(node.act);
                 return;
             }
         }
+    }
+
+
+    private boolean cycleDetection(State node) {
+        State temp = node;
+        while (temp != null) {
+            temp = temp.parent;
+            if (temp != null && temp.equals(node))
+                return true;
+        }
+        return false;
     }
 }
