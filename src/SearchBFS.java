@@ -13,46 +13,55 @@ public class SearchBFS extends Search {
     @Override
     public void execute() {
         f.add(problem.getInitialState());
+        nodeSeen++;
         search();
-        maxMemoryUse = (nodeSeen - nodeExpand)* nodeSize;
     }
 
     @Override
     public void search() {
         while (!f.isEmpty()) {
             State s = f.remove();
-//            System.out.println("id: " + ((NavState) s).getId());
-            nodeExpand++;
-            if (problem.goalTest(s)) {
-                answer = s;
-                State temp = s;
-                while (temp != null) {
-                    path.add(temp.act);
-                    temp = temp.parent;
-                }
-                return;
-            }
-
-            for (Integer action : problem.actions(s)) {
-                nodeSeen++;
-//                System.out.println("action: " + action);
-                if (isGraph) {
-                    boolean temp = false;
-                    for (State node : e) {
-                        if (node.equals(problem.nextState(s, action))) {
-                            temp = true;
-                            break;
-                        }
-                    }
-                    if (temp) continue;
-                }
-//                System.out.println("newly added: " + ((NavState) problem.nextState(s, action)).getId());
-                f.add(problem.nextState(s, action));
-            }
-
             if (isGraph)
                 e.add(s);
+            nodeExpand++;
 
+
+            for (Integer action : problem.actions(s)) {
+                State child = problem.nextState(s, action);
+                if (isGraph) {
+                    if (!e.contains(child) && !f.contains(child)) {
+                        nodeSeen++;
+                        if (problem.goalTest(child)) {
+                            answer = child;
+                            State temp = child;
+                            while (temp != null) {
+                                path.add(temp.act);
+                                temp = temp.parent;
+                            }
+                            return;
+                        }
+                        f.add(child);
+                    }
+                } else {
+                    if (!f.contains(child)) {
+                        nodeSeen++;
+                        if (problem.goalTest(child)) {
+                            answer = child;
+                            State temp = child;
+                            while (temp != null) {
+                                path.add(temp.act);
+                                temp = temp.parent;
+                            }
+                            return;
+                        }
+                        f.add(child);
+                    }
+                }
+            }
+            if (isGraph)
+                maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size() + e.size());
+            else
+                maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size());
         }
 
     }

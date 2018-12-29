@@ -68,7 +68,7 @@ public class Run {
         System.out.println("Depth of the result: " + (search.getPath().size() - 1));
         System.out.println("Number of node that has been seen: " + search.getNodeSeen());
         System.out.println("Number of node that has been expanded: " + search.getNodeExpand());
-        System.out.println("Maximum memory used: " + getSize(search.getMaxMemoryUse()));
+        System.out.println("Maximum number of nodes kept in memory: " + search.getMaxNodeKeptInMemory());
     }
 
     public static String getSize(long size) {

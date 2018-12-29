@@ -16,7 +16,7 @@ public class SearchAStar extends Search {
     public void execute() {
         f.add(problem.getInitialState());
         search();
-        maxMemoryUse = (nodeSeen - nodeExpand)* nodeSize;
+        maxNodeKeptInMemory = (nodeSeen - nodeExpand);
     }
 
     @Override

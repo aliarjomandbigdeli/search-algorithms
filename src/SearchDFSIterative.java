@@ -17,6 +17,6 @@ public class SearchDFSIterative extends SearchDFSLimited {
             if (isGraph)
                 e.clear();
         }
-        maxMemoryUse = path.size() * 4; //int size in java: 4 bytes
+        maxNodeKeptInMemory = path.size() * 4; //int size in java: 4 bytes
     }
 }

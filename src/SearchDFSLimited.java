@@ -18,7 +18,7 @@ public class SearchDFSLimited extends Search {
     @Override
     public void execute() {
         search();
-        maxMemoryUse = path.size() * 4; //int size in java: 4 bytes
+        maxNodeKeptInMemory = path.size() * 4; //int size in java: 4 bytes
     }
 
     @Override
