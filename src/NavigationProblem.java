@@ -43,6 +43,7 @@ public class NavigationProblem extends Problem {
             NavState nextState = new NavState(action);
             nextState.parent = state;
             nextState.act = action;
+            nextState.pathCost = state.pathCost + stepCost(state, action, nextState);
             return nextState;
         } else {
             System.out.println("wrong action");

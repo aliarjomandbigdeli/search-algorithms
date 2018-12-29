@@ -9,6 +9,7 @@ public class NavState extends State {
 
     /**
      * city ID
+     *
      * @return city ID
      */
     public int getId() {
@@ -28,5 +29,10 @@ public class NavState extends State {
             return false;
         NavState other = (NavState) obj;
         return this.id == other.id;
+    }
+
+    @Override
+    public String toString() {
+        return "" + id;
     }
 }

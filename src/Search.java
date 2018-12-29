@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+
 /**
  * this class is the parent of all searches you want to define with this interface
  *
@@ -28,8 +29,7 @@ public abstract class Search {
         pathCost = 0;
         maxNodeKeptInMemory = 0;
         f = new LinkedList<>();
-        if (isGraph)
-            e = new LinkedList<>();
+        e = new LinkedList<>();
     }
 
     public int getNodeSeen() {
@@ -63,5 +63,17 @@ public abstract class Search {
     abstract public void execute();
 
     abstract public void search();
+
+    protected void showLists() {
+        System.out.print("frontier list: ");
+        for (State state : f) {
+            System.out.print(state + ", ");
+        }
+        System.out.print("\texplored list: ");
+        for (State state : e) {
+            System.out.print(state + ", ");
+        }
+        System.out.println();
+    }
 
 }

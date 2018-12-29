@@ -13,16 +13,16 @@ public class SearchGreedyBFS extends Search {
 
     @Override
     public void execute() {
-        f.add(problem.getInitialState());
         search();
-        maxNodeKeptInMemory = (nodeSeen - nodeExpand);
     }
 
     @Override
     public void search() {
+        f.add(problem.getInitialState());
+        nodeSeen++;
         while (!f.isEmpty()) {
+            showLists();
             State s = f.remove();
-            nodeExpand++;
             if (problem.goalTest(s)) {
                 answer = s;
                 State temp = s;
@@ -33,32 +33,32 @@ public class SearchGreedyBFS extends Search {
                 return;
             }
 
+            if (isGraph)
+                e.add(s);
+            nodeExpand++;
+
             for (Integer action : problem.actions(s)) {
+                State child = problem.nextState(s, action);
                 if (isGraph) {
-                    boolean temp = false;
-                    for (State node : e) {
-                        if (node.equals(problem.nextState(s, action))) {
-                            temp = true;
-                            break;
-                        }
+                    if (!e.contains(child) && !f.contains(child)) {
+                        nodeSeen++;
+                        f.add(child);
                     }
-                    if (temp) continue;
+                } else {
+                    if (!f.contains(child)) {
+                        nodeSeen++;
+                        f.add(child);
+                    }
                 }
-                nodeSeen++;
-
-                f.add(problem.nextState(s, action));
             }
-
             f.sort(new Comparator<State>() {
                 @Override
                 public int compare(State s1, State s2) {
-                    return ((Integer) problem.h(s1)).
-                            compareTo(problem.h(s2));
+                    return ((Integer) (problem.h(s1))).compareTo(problem.h(s2));
                 }
             });
 
-            if (isGraph)
-                e.add(s);
+            maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size() + e.size());
 
         }
     }

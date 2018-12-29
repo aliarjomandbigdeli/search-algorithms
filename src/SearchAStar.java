@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
@@ -14,16 +13,17 @@ public class SearchAStar extends Search {
 
     @Override
     public void execute() {
-        f.add(problem.getInitialState());
         search();
-        maxNodeKeptInMemory = (nodeSeen - nodeExpand);
     }
 
     @Override
     public void search() {
+        f.add(problem.getInitialState());
+        nodeSeen++;
         while (!f.isEmpty()) {
+            showLists();
+
             State s = f.remove();
-            nodeExpand++;
             if (problem.goalTest(s)) {
                 answer = s;
                 State temp = s;
@@ -34,44 +34,46 @@ public class SearchAStar extends Search {
                 return;
             }
 
+            if (isGraph)
+                e.add(s);
+            nodeExpand++;
+
             for (Integer action : problem.actions(s)) {
+                State child = problem.nextState(s, action);
                 if (isGraph) {
-                    boolean temp = false;
-                    for (State node : e) {
-                        if (node.equals(problem.nextState(s, action))) {
-                            temp = true;
-                            break;
+                    if (!e.contains(child) && !f.contains(child)) {
+                        nodeSeen++;
+                        f.add(child);
+                    } else if (f.contains(child)) {
+                        State temp = f.get(f.indexOf(child));
+                        if (temp.pathCost > child.pathCost) {
+                            temp.parent = child.parent;
+                            temp.pathCost = child.pathCost;
                         }
                     }
-                    if (temp) continue;
+                } else {
+                    if (!f.contains(child)) {
+                        nodeSeen++;
+                        f.add(child);
+                    } else if (f.contains(child)) {
+                        State temp = f.get(f.indexOf(child));
+                        if (temp.pathCost > child.pathCost) {
+                            temp.parent = child.parent;
+                            temp.pathCost = child.pathCost;
+                        }
+                    }
                 }
-                nodeSeen++;
-
-                f.add(problem.nextState(s, action));
             }
 
             f.sort(new Comparator<State>() {
                 @Override
                 public int compare(State s1, State s2) {
-                    ArrayList<Integer> path1 = new ArrayList<>();
-                    ArrayList<Integer> path2 = new ArrayList<>();
-                    State temp = s1;
-                    while (temp != null) {
-                        path1.add(temp.act);
-                        temp = temp.parent;
-                    }
-                    temp = s2;
-                    while (temp != null) {
-                        path2.add(temp.act);
-                        temp = temp.parent;
-                    }
-                    return ((Integer) (problem.pathCost(path1) + problem.h(s1))).
-                            compareTo(problem.pathCost(path2) + problem.h(s2));
+                    return ((Integer) (s1.pathCost + problem.h(s1))).
+                            compareTo(s2.pathCost + problem.h(s2));
                 }
             });
 
-            if (isGraph)
-                e.add(s);
+            maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size() + e.size());
 
         }
     }

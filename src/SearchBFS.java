@@ -12,13 +12,14 @@ public class SearchBFS extends Search {
 
     @Override
     public void execute() {
-        f.add(problem.getInitialState());
-        nodeSeen++;
+
         search();
     }
 
     @Override
     public void search() {
+        f.add(problem.getInitialState());
+        nodeSeen++;
         while (!f.isEmpty()) {
             State s = f.remove();
             if (isGraph)
@@ -58,10 +59,8 @@ public class SearchBFS extends Search {
                     }
                 }
             }
-            if (isGraph)
-                maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size() + e.size());
-            else
-                maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size());
+
+            maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size() + e.size());
         }
 
     }

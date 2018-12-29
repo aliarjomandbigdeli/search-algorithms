@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Run {
 
     public static void main(String[] args) {
-
         Problem problem = new NavigationProblem();
         Search search;
         System.out.println("Search Algorithms: ");
@@ -52,7 +51,6 @@ public class Run {
                 break;
         }
         search.setProblem(problem);
-        search.setNodeSize(16 + 2 * 4); //16 bytes for the header an object(parent) and two 4 bytes for two int fields
         search.execute();
         showResultOfSearch(search);
     }
@@ -64,21 +62,10 @@ public class Run {
             System.out.print(search.getPath().get(i) + " ");
         }
         System.out.println();
-        System.out.println("path cost: " + search.getProblem().pathCost(search.getPath()));
+        System.out.println("path cost: " + search.answer.pathCost);
         System.out.println("Depth of the result: " + (search.getPath().size() - 1));
         System.out.println("Number of node that has been seen: " + search.getNodeSeen());
         System.out.println("Number of node that has been expanded: " + search.getNodeExpand());
         System.out.println("Maximum number of nodes kept in memory: " + search.getMaxNodeKeptInMemory());
-    }
-
-    public static String getSize(long size) {
-        if (size < 1024)
-            return size + " Bytes";
-        if (size < 1024 * 1024)
-            return String.format("%.2f KB", (float) size / 1024);
-        if (size < 1024 * 1024 * 1024)
-            return String.format("%.2f MB", (float) size / (1024 * 1024));
-
-        return String.format("%.2f GB", (float) size / (1024 * 1024 * 1024));
     }
 }

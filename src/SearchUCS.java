@@ -13,16 +13,15 @@ public class SearchUCS extends Search {
 
     @Override
     public void execute() {
-        f.add(problem.getInitialState());
         search();
-        maxNodeKeptInMemory = (nodeSeen - nodeExpand);
     }
 
     @Override
     public void search() {
+        f.add(problem.getInitialState());
+        nodeSeen++;
         while (!f.isEmpty()) {
             State s = f.remove();
-            nodeExpand++;
             if (problem.goalTest(s)) {
                 answer = s;
                 State temp = s;
@@ -32,39 +31,48 @@ public class SearchUCS extends Search {
                 }
                 return;
             }
+
+            if (isGraph)
+                e.add(s);
+            nodeExpand++;
+
             for (Integer action : problem.actions(s)) {
+                State child = problem.nextState(s, action);
                 if (isGraph) {
-                    boolean temp = false;
-                    for (State node : e) {
-                        if (node.equals(problem.nextState(s, action))) {
-                            temp = true;
-                            break;
+                    if (!e.contains(child) && !f.contains(child)) {
+                        nodeSeen++;
+                        f.add(child);
+                    } else if (f.contains(child)) {
+                        State temp = f.get(f.indexOf(child));
+                        if (temp.pathCost > child.pathCost) {
+                            temp.parent = child.parent;
+                            temp.pathCost = child.pathCost;
                         }
                     }
-                    if (temp) continue;
+                } else {
+                    if (!f.contains(child)) {
+                        nodeSeen++;
+                        f.add(child);
+                    } else if (f.contains(child)) {
+                        State temp = f.get(f.indexOf(child));
+                        if (temp.pathCost > child.pathCost) {
+                            temp.parent = child.parent;
+                            temp.pathCost = child.pathCost;
+                        }
+                    }
                 }
-                nodeSeen++;
-
-                f.add(problem.nextState(s, action));
             }
             f.sort(new Comparator<State>() {
                 @Override
                 public int compare(State o1, State o2) {
-                    return ((Integer) problem.stepCost(o1.parent, o1.act, o1)).
-                            compareTo(problem.stepCost(o2.parent, o2.act, o2));
+                    return ((Integer) o1.pathCost).compareTo(o2.pathCost);
                 }
             });
 
-//            System.out.println("sorted f: ");
-//            for (State state : f) {
-//                System.out.print(((NavState) state).getId() + ", ");
-//            }
-//            System.out.println();
-
-            if (isGraph)
-                e.add(s);
+            maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size() + e.size());
 
         }
     }
+
 
 }
