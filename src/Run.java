@@ -35,7 +35,7 @@ public class Run {
             case 4:
                 System.out.print("please enter the depth: ");
                 int depth = scanner.nextInt();
-                search = new SearchDFSLimited(isGraph, depth);
+                search = new SearchDLS(isGraph, depth);
                 break;
             case 5:
                 search = new SearchUCS(isGraph);
@@ -57,7 +57,7 @@ public class Run {
 
     public static void showResultOfSearch(Search search) {
         System.out.println("Result of the " + search.getClass().getSimpleName());
-        System.out.print("path: ");
+        System.out.print("path: 0 ");
         for (int i = search.getPath().size() - 2; i >= 0; i--) {
             System.out.print(search.getPath().get(i) + " ");
         }

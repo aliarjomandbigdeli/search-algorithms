@@ -1,66 +1,12 @@
 /**
  * Depth First Search(DFS) algorithm
- * this implementation is the recursive version
+ * Depth-first search can be viewed as a special case of depth-limited search with limit=∞(infinity).
  *
  * @author Ali ArjomandBigdeli
- * @since 12.27.2018
+ * @since 12.31.2018
  */
-public class SearchDFS extends Search {
+public class SearchDFS extends SearchDLS {
     public SearchDFS(boolean isGraph) {
-        super(isGraph);
-    }
-
-    @Override
-    public void execute() {
-        search();
-    }
-
-    public void search() {
-        search(problem.getInitialState());
-    }
-
-    /**
-     * @param node refers to parent node
-     */
-    public void search(State node) {
-        if (problem.goalTest(node)) {
-            answer = node;
-            path.add(node.act);
-            return;
-        }
-        if (!isGraph && cycleDetection(node)) {
-            System.out.println("cycle detected, algorithm can't solve this problem");
-            return;
-        }
-
-        nodeExpand++;
-        for (Integer action : problem.actions(node)) {
-            State child = problem.nextState(node, action);
-            nodeSeen++;
-            if (isGraph) {
-                if(e.contains(child)){
-                    continue;
-                }
-                e.add(node);
-            }
-            search(child);
-
-            maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, f.size() + e.size());
-            if (answer != null) {
-                path.add(node.act);
-                return;
-            }
-        }
-    }
-
-
-    private boolean cycleDetection(State node) {
-        State temp = node;
-        while (temp != null) {
-            temp = temp.parent;
-            if (temp != null && temp.equals(node))
-                return true;
-        }
-        return false;
+        super(isGraph, Integer.MAX_VALUE);
     }
 }

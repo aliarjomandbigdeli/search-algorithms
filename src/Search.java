@@ -11,8 +11,7 @@ public abstract class Search {
     protected int nodeExpand;
     protected LinkedList<Integer> path; //action sequence
     protected int pathCost;
-    protected int maxNodeKeptInMemory;
-    protected long nodeSize;
+    protected int maxNodeKeptInMemory;  //maximum node kept in memory at a time
     protected State answer;
 
     protected Problem problem;
@@ -40,12 +39,8 @@ public abstract class Search {
         return nodeExpand;
     }
 
-    public long getMaxNodeKeptInMemory() {
+    public int getMaxNodeKeptInMemory() {
         return maxNodeKeptInMemory;
-    }
-
-    public void setNodeSize(long nodeSizeByte) {
-        this.nodeSize = nodeSizeByte;
     }
 
     public LinkedList<Integer> getPath() {
@@ -62,7 +57,7 @@ public abstract class Search {
 
     abstract public void execute();
 
-    abstract public void search();
+    public void search(){}
 
     protected void createSolutionPath(State state){
         State temp = state;
