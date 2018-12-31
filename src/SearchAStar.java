@@ -2,6 +2,8 @@ import java.util.Comparator;
 
 /**
  * A* search algorithm
+ * It evaluates nodes by combining the cost to reach the node(pathCost),
+ * and h(n), the cost to get from the node to the goal.
  *
  * @author Ali ArjomandBigdeli
  * @since 12.27.2018

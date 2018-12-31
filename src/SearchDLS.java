@@ -37,11 +37,6 @@ public class SearchDLS extends Search {
      * @return 1 assigns to result, 0 assigns to cutoff and -1 assigns to failure
      */
     public int search(State node, int limit) {
-        if (!isGraph && cycleDetection(node)) {
-            System.out.println("cycle detected, algorithm can't solve this problem in tree mode");
-            return -1;
-        }
-
         if (problem.goalTest(node)) {
             answer = node;
             createSolutionPath(node);
@@ -55,17 +50,23 @@ public class SearchDLS extends Search {
                 State child = problem.nextState(node, action);
                 nodeSeen++;
                 if (isGraph) {
-                    if (e.contains(child)) {
-                        continue;
+                    if (!e.contains(child)) {
+                        e.add(node);
+                        int result = search(child, limit - 1);
+                        if (result == 0) {
+                            cutoffOccurred = true;
+                        } else if (result != -1) {
+                            return result;
+                        }
                     }
-                    e.add(node);
+                } else {
+                    int result = search(child, limit - 1);
+                    if (result == 0)
+                        cutoffOccurred = true;
+                    else if (result != -1)
+                        return result;
                 }
 
-                int result = search(child, limit - 1);
-                if (result == 0)
-                    cutoffOccurred = true;
-                else if (result != -1)
-                    return result;
                 maxNodeKeptInMemory = Integer.max(maxNodeKeptInMemory, e.size());
 
             }
@@ -80,16 +81,5 @@ public class SearchDLS extends Search {
                 return -1;
         }
 
-    }
-
-
-    private boolean cycleDetection(State node) {
-        State temp = node;
-        while (temp != null) {
-            temp = temp.parent;
-            if (temp != null && temp.equals(node))
-                return true;
-        }
-        return false;
     }
 }

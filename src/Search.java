@@ -2,6 +2,7 @@ import java.util.LinkedList;
 
 /**
  * this class is the parent of all searches you want to define with this interface
+ * you can use all searches in both tree or graph implementation by determining isGraph parameter
  *
  * @author Ali ArjomandBigdeli
  * @since 12.27.2018
@@ -57,9 +58,10 @@ public abstract class Search {
 
     abstract public void execute();
 
-    public void search(){}
+    public void search() {
+    }
 
-    protected void createSolutionPath(State state){
+    protected void createSolutionPath(State state) {
         State temp = state;
         while (temp != null) {
             path.add(temp.act);

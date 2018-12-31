@@ -1,5 +1,7 @@
 /**
  * Breath First Search(BFS) algorithm
+ * Breadth-first search is a simple strategy in which the root node is expanded first,
+ * then all the successors of the root node are expanded next, then their successors, and so on.
  *
  * @author Ali ArjomandBigdeli
  * @since 12.27.2018

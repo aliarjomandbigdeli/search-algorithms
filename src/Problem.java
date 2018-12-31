@@ -17,6 +17,7 @@ public abstract class Problem {
 
     /**
      * The goal test, which determines whether a given state is a goal state
+     *
      * @param state given state
      * @return a boolean which determines whether a given state is a goal state
      */
@@ -31,10 +32,10 @@ public abstract class Problem {
     abstract public int pathCost(List<Integer> path);
 
     /**
-     * heuristic function
+     * heuristic function, the cost to get from the node to the goal
      * you should override it based on your problem to use AStar search
      */
-    public int h(State state){
+    public int h(State state) {
         return 0;
     }
 }

@@ -2,6 +2,7 @@ import java.util.Comparator;
 
 /**
  * uniform cost search algorithm
+ * it sort frontier list by pathCost and an extra check in case a shorter path to a frontier state is discovered
  *
  * @author Ali ArjomandBigdeli
  * @since 12.27.2018
